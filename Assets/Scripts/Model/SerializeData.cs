@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MsgPack.Serialization;
 
 namespace model {
     [System.Serializable]
     public class SerializeData : ISerializationCallbackReceiver {
 
+        [MessagePackMember(0)]
         public int testNum_;
+        [MessagePackMember(1)]
         public float testFloat_;
+        [MessagePackMember(2)]
         public string testString_;
+        [MessagePackMember(3)]
         public bool testBool_;
 
+        [MessagePackMember(4)]
         public int[] testArray_;
+        [MessagePackMember(5)]
         public List<string> testList_;
+        [MessagePackMember(6)]
         public Dictionary<int, string> testDic_;
 
         [HideInInspector]
