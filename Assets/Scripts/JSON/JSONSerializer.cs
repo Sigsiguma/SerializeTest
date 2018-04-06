@@ -10,6 +10,7 @@ namespace json {
             SerializeData test = new SerializeData();
             string jsonData = JsonUtility.ToJson(test);
             Debug.Log(jsonData);
+
         }
     }
 }
