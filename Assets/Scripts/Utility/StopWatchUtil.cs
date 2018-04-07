@@ -26,7 +26,7 @@ namespace utility {
         }
 
         public static string GetTimeString(string timeName) {
-            return string.Format("{0}: {1} ms", timeName, sw_.ElapsedMilliseconds);
+            return string.Format("{0}: {1} ms", timeName, sw_.ElapsedMilliseconds / SerializeDataCreator.iterationNum);
         }
 
         public static void PrintTimeString(string timeName) {

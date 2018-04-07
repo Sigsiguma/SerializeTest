@@ -18,7 +18,11 @@ namespace msgpack {
         public void Serialize() {
             var stream = new MemoryStream();
 
-            utility.StopWatchUtil.MeasureMethod(() => serializer_.Pack(stream, SerializeDataCreator.serializeDataList_), "MessagePack CLI Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    serializer_.Pack(stream, SerializeDataCreator.serializeDataList_);
+                }
+            }, "MessagePack CLI Serialize");
 
             // ストリームからデータを取り出す
             data_ = new byte[(int)stream.Length];
@@ -27,7 +31,11 @@ namespace msgpack {
         }
 
         public void Deserialize() {
-            utility.StopWatchUtil.MeasureMethod(() => serializer_.UnpackSingleObject(data_), "MessagePack CLI Deserialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    serializer_.UnpackSingleObject(data_);
+                }
+            }, "MessagePack CLI Deserialize");
         }
     }
 }

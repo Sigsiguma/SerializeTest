@@ -9,11 +9,19 @@ namespace json {
         private string jsonData_;
 
         public void Serialize() {
-            utility.StopWatchUtil.MeasureMethod(() => jsonData_ = JsonUtility.ToJson(SerializeDataCreator.serializeDataList_), "JSONUtility Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    jsonData_ = JsonUtility.ToJson(SerializeDataCreator.serializeDataList_);
+                }
+            }, "JSONUtility Serialize");
         }
 
         public void Deserialize() {
-            utility.StopWatchUtil.MeasureMethod(() => JsonUtility.FromJson<SerializeDataList>(jsonData_), "JSONUtility Deserialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    JsonUtility.FromJson<SerializeDataList>(jsonData_);
+                }
+            }, "JSONUtility Deserialize");
         }
     }
 }

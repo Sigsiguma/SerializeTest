@@ -29,12 +29,20 @@ namespace protobuf {
         }
 
         public void Serialize() {
-            utility.StopWatchUtil.MeasureMethod(() => data_ = serializeDataList_.ToByteString(), "ProtocolBuffer Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    data_ = serializeDataList_.ToByteString();
+                }
+            }, "ProtocolBuffer Serialize");
         }
 
         public void Deserialize() {
             SerializeDataList result = new SerializeDataList();
-            utility.StopWatchUtil.MeasureMethod(() => result = SerializeDataList.Parser.ParseFrom(data_), "ProtocolBuffer Deserialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    result = SerializeDataList.Parser.ParseFrom(data_);
+                }
+            }, "ProtocolBuffer Deserialize");
         }
     }
 }

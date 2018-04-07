@@ -9,11 +9,19 @@ namespace msgpack {
         private byte[] data_;
 
         public void Serialize() {
-            utility.StopWatchUtil.MeasureMethod(() => data_ = MessagePack.MessagePackSerializer.Serialize(SerializeDataCreator.serializeDataList_), "MessagePack Csharp Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    data_ = MessagePack.MessagePackSerializer.Serialize(SerializeDataCreator.serializeDataList_);
+                }
+            }, "MessagePack Csharp Serialize");
         }
 
         public void Deserialize() {
-            utility.StopWatchUtil.MeasureMethod(() => MessagePack.MessagePackSerializer.Deserialize<SerializeDataList>(data_), "MessagePack Csharp Deserialize");
+            utility.StopWatchUtil.MeasureMethod(() => {
+                for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
+                    MessagePack.MessagePackSerializer.Deserialize<SerializeDataList>(data_);
+                }
+            }, "MessagePack Csharp Deserialize");
         }
 
     }
