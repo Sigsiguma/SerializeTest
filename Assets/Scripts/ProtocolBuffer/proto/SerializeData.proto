@@ -9,6 +9,6 @@ message SerializeData {
     string testString = 3;
     bool testBool = 4;
 
-    repeated int32 testList = 5;
+    repeated string testList = 5;
     map<int32,string> testDic = 6;
 }

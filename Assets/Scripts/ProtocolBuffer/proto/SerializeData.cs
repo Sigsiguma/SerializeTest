@@ -27,7 +27,7 @@ namespace protobuf {
             "ChNTZXJpYWxpemVEYXRhLnByb3RvEghwcm90b2J1ZiLSAQoNU2VyaWFsaXpl",
             "RGF0YRIPCgd0ZXN0TnVtGAEgASgFEhEKCXRlc3RGbG9hdBgCIAEoAhISCgp0",
             "ZXN0U3RyaW5nGAMgASgJEhAKCHRlc3RCb29sGAQgASgIEhAKCHRlc3RMaXN0",
-            "GAUgAygFEjUKB3Rlc3REaWMYBiADKAsyJC5wcm90b2J1Zi5TZXJpYWxpemVE",
+            "GAUgAygJEjUKB3Rlc3REaWMYBiADKAsyJC5wcm90b2J1Zi5TZXJpYWxpemVE",
             "YXRhLlRlc3REaWNFbnRyeRouCgxUZXN0RGljRW50cnkSCwoDa2V5GAEgASgF",
             "Eg0KBXZhbHVlGAIgASgJOgI4AUILqgIIcHJvdG9idWZiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
@@ -125,11 +125,11 @@ namespace protobuf {
 
     /// <summary>Field number for the "testList" field.</summary>
     public const int TestListFieldNumber = 5;
-    private static readonly pb::FieldCodec<int> _repeated_testList_codec
-        = pb::FieldCodec.ForInt32(42);
-    private readonly pbc::RepeatedField<int> testList_ = new pbc::RepeatedField<int>();
+    private static readonly pb::FieldCodec<string> _repeated_testList_codec
+        = pb::FieldCodec.ForString(42);
+    private readonly pbc::RepeatedField<string> testList_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<int> TestList {
+    public pbc::RepeatedField<string> TestList {
       get { return testList_; }
     }
 
@@ -279,8 +279,7 @@ namespace protobuf {
             TestBool = input.ReadBool();
             break;
           }
-          case 42:
-          case 40: {
+          case 42: {
             testList_.AddEntriesFrom(input, _repeated_testList_codec);
             break;
           }
