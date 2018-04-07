@@ -9,21 +9,16 @@ namespace msgpack {
     public class MessagePackCLISerializer : MonoBehaviour {
 
         private byte[] data_;
-        private SerializeData serializeData_;
-        private MessagePackSerializer<SerializeData> serializer_;
+        private MessagePackSerializer<SerializeDataList> serializer_;
 
         private void Start() {
-            serializer_ = MessagePackSerializer.Get<SerializeData>();
-            serializeData_ = new SerializeData();
+            serializer_ = MessagePackSerializer.Get<SerializeDataList>();
         }
 
         public void Serialize() {
             var stream = new MemoryStream();
 
-            utility.StopWatchUtil.CountStart();
-            serializer_.Pack(stream, serializeData_);
-            utility.StopWatchUtil.CountEnd();
-            utility.StopWatchUtil.PrintTimeString("MessagePack CLI Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => serializer_.Pack(stream, SerializeDataCreator.serializeDataList_), "MessagePack CLI Serialize");
 
             // ストリームからデータを取り出す
             data_ = new byte[(int)stream.Length];
@@ -32,11 +27,7 @@ namespace msgpack {
         }
 
         public void Deserialize() {
-            // MessagePack Deserialize
-            utility.StopWatchUtil.CountStart();
-            SerializeData result = serializer_.UnpackSingleObject(data_);
-            utility.StopWatchUtil.CountEnd();
-            utility.StopWatchUtil.PrintTimeString("MessagePack CLI Deserialize");
+            utility.StopWatchUtil.MeasureMethod(() => serializer_.UnpackSingleObject(data_), "MessagePack CLI Deserialize");
         }
     }
 }

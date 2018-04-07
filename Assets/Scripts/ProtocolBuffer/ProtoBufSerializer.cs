@@ -7,35 +7,34 @@ namespace protobuf {
     public class ProtoBufSerializer : MonoBehaviour {
 
         private ByteString data_;
-        private SerializeData serializeData_;
+        private SerializeDataList serializeDataList_;
 
         private void Start() {
-            serializeData_ = new SerializeData();
-            serializeData_.TestNum = 1;
-            serializeData_.TestFloat = 3.14f;
-            serializeData_.TestString = "test!!";
-            serializeData_.TestBool = false;
+            serializeDataList_ = new SerializeDataList();
+            for (int i = 0; i < SerializeDataCreator.listLength_; ++i) {
+                SerializeData serializeData = new SerializeData();
+                serializeData.TestNum = 1;
+                serializeData.TestFloat = 3.14f;
+                serializeData.TestString = "test!!";
+                serializeData.TestBool = false;
 
-            serializeData_.TestList.Add("enemy1");
-            serializeData_.TestList.Add("enemy2");
-            serializeData_.TestList.Add("enemy3");
+                serializeData.TestList.Add("enemy1");
+                serializeData.TestList.Add("enemy2");
+                serializeData.TestList.Add("enemy3");
 
-            serializeData_.TestDic.Add(1, "test");
-            serializeData_.TestDic.Add(2, "hoge");
+                serializeData.TestDic.Add(1, "test");
+                serializeData.TestDic.Add(2, "hoge");
+                serializeDataList_.DataList.Add(serializeData);
+            }
         }
 
         public void Serialize() {
-            utility.StopWatchUtil.CountStart();
-            data_ = serializeData_.ToByteString();
-            utility.StopWatchUtil.CountEnd();
-            utility.StopWatchUtil.PrintTimeString("ProtocolBuffer Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => data_ = serializeDataList_.ToByteString(), "ProtocolBuffer Serialize");
         }
 
         public void Deserialize() {
-            utility.StopWatchUtil.CountStart();
-            SerializeData.Parser.ParseFrom(data_);
-            utility.StopWatchUtil.CountEnd();
-            utility.StopWatchUtil.PrintTimeString("ProtocolBuffer Deserialize");
+            SerializeDataList result = new SerializeDataList();
+            utility.StopWatchUtil.MeasureMethod(() => result = SerializeDataList.Parser.ParseFrom(data_), "ProtocolBuffer Deserialize");
         }
     }
 }

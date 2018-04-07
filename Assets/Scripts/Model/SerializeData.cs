@@ -7,18 +7,18 @@ namespace model {
     [System.Serializable]
     public class SerializeData : ISerializationCallbackReceiver {
 
-        [MessagePackMember(0)]
-        public int testNum_;
         [MessagePackMember(1)]
-        public float testFloat_;
+        public int testNum_;
         [MessagePackMember(2)]
-        public string testString_;
+        public float testFloat_;
         [MessagePackMember(3)]
+        public string testString_;
+        [MessagePackMember(4)]
         public bool testBool_;
 
-        [MessagePackMember(4)]
-        public List<string> testList_;
         [MessagePackMember(5)]
+        public List<string> testList_;
+        [MessagePackMember(6)]
         public Dictionary<int, string> testDic_;
 
         [HideInInspector]

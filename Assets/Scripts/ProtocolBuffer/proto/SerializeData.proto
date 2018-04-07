@@ -12,3 +12,7 @@ message SerializeData {
     repeated string testList = 5;
     map<int32,string> testDic = 6;
 }
+
+message SerializeDataList {
+    repeated SerializeData dataList = 1;
+}

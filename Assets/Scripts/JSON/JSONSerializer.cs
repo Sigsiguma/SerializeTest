@@ -7,24 +7,13 @@ namespace json {
     public class JSONSerializer : MonoBehaviour {
 
         private string jsonData_;
-        private SerializeData serializeData_;
-
-        private void Start() {
-            serializeData_ = new SerializeData();
-        }
 
         public void Serialize() {
-            utility.StopWatchUtil.CountStart();
-            jsonData_ = JsonUtility.ToJson(serializeData_);
-            utility.StopWatchUtil.CountEnd();
-            utility.StopWatchUtil.PrintTimeString("JSONUtility Serialize");
+            utility.StopWatchUtil.MeasureMethod(() => jsonData_ = JsonUtility.ToJson(SerializeDataCreator.serializeDataList_), "JSONUtility Serialize");
         }
 
         public void Deserialize() {
-            utility.StopWatchUtil.CountStart();
-            JsonUtility.FromJson<SerializeData>(jsonData_);
-            utility.StopWatchUtil.CountEnd();
-            utility.StopWatchUtil.PrintTimeString("JSONUtility Deserialize");
+            utility.StopWatchUtil.MeasureMethod(() => JsonUtility.FromJson<SerializeDataList>(jsonData_), "JSONUtility Deserialize");
         }
     }
 }

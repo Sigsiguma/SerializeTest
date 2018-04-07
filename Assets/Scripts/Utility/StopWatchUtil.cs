@@ -8,6 +8,15 @@ namespace utility {
 
         private static Stopwatch sw_ = new Stopwatch();
 
+        public static void MeasureMethod(System.Action method, string timeName = "") {
+            CountStart();
+            if (method != null) {
+                method();
+            }
+            CountEnd();
+            PrintTimeString(timeName);
+        }
+
         public static void CountStart() {
             sw_.Restart();
         }

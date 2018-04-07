@@ -29,11 +29,14 @@ namespace protobuf {
             "ZXN0U3RyaW5nGAMgASgJEhAKCHRlc3RCb29sGAQgASgIEhAKCHRlc3RMaXN0",
             "GAUgAygJEjUKB3Rlc3REaWMYBiADKAsyJC5wcm90b2J1Zi5TZXJpYWxpemVE",
             "YXRhLlRlc3REaWNFbnRyeRouCgxUZXN0RGljRW50cnkSCwoDa2V5GAEgASgF",
-            "Eg0KBXZhbHVlGAIgASgJOgI4AUILqgIIcHJvdG9idWZiBnByb3RvMw=="));
+            "Eg0KBXZhbHVlGAIgASgJOgI4ASI+ChFTZXJpYWxpemVEYXRhTGlzdBIpCghk",
+            "YXRhTGlzdBgBIAMoCzIXLnByb3RvYnVmLlNlcmlhbGl6ZURhdGFCC6oCCHBy",
+            "b3RvYnVmYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::protobuf.SerializeData), global::protobuf.SerializeData.Parser, new[]{ "TestNum", "TestFloat", "TestString", "TestBool", "TestList", "TestDic" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::protobuf.SerializeData), global::protobuf.SerializeData.Parser, new[]{ "TestNum", "TestFloat", "TestString", "TestBool", "TestList", "TestDic" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::protobuf.SerializeDataList), global::protobuf.SerializeDataList.Parser, new[]{ "DataList" }, null, null, null)
           }));
     }
     #endregion
@@ -285,6 +288,127 @@ namespace protobuf {
           }
           case 50: {
             testDic_.AddEntriesFrom(input, _map_testDic_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SerializeDataList : pb::IMessage<SerializeDataList> {
+    private static readonly pb::MessageParser<SerializeDataList> _parser = new pb::MessageParser<SerializeDataList>(() => new SerializeDataList());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SerializeDataList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::protobuf.SerializeDataReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SerializeDataList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SerializeDataList(SerializeDataList other) : this() {
+      dataList_ = other.dataList_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SerializeDataList Clone() {
+      return new SerializeDataList(this);
+    }
+
+    /// <summary>Field number for the "dataList" field.</summary>
+    public const int DataListFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::protobuf.SerializeData> _repeated_dataList_codec
+        = pb::FieldCodec.ForMessage(10, global::protobuf.SerializeData.Parser);
+    private readonly pbc::RepeatedField<global::protobuf.SerializeData> dataList_ = new pbc::RepeatedField<global::protobuf.SerializeData>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::protobuf.SerializeData> DataList {
+      get { return dataList_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SerializeDataList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SerializeDataList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!dataList_.Equals(other.dataList_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= dataList_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      dataList_.WriteTo(output, _repeated_dataList_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += dataList_.CalculateSize(_repeated_dataList_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SerializeDataList other) {
+      if (other == null) {
+        return;
+      }
+      dataList_.Add(other.dataList_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            dataList_.AddEntriesFrom(input, _repeated_dataList_codec);
             break;
           }
         }
