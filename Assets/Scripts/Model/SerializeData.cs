@@ -17,10 +17,8 @@ namespace model {
         public bool testBool_;
 
         [MessagePackMember(4)]
-        public int[] testArray_;
-        [MessagePackMember(5)]
         public List<string> testList_;
-        [MessagePackMember(6)]
+        [MessagePackMember(5)]
         public Dictionary<int, string> testDic_;
 
         [HideInInspector]
@@ -34,7 +32,6 @@ namespace model {
             testString_ = "test!!";
             testBool_ = false;
 
-            testArray_ = new int[] { 2, 3, 5, 7, 11 };
             testList_ = new List<string>() { "enemy1", "enemy2", "enemy3" };
             testDic_ = new Dictionary<int, string>() { { 1, "test" }, { 2, "hoge" } };
 

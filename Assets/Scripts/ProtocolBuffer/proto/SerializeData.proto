@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option csharp_namespace = "protobuf";
+package protobuf;
+
+message SerializeData {
+    int32 testNum = 1;
+    float testFloat = 2;
+    string testString = 3;
+    bool testBool = 4;
+
+    repeated int32 testList = 5;
+    map<int32,string> testDic = 6;
+}
