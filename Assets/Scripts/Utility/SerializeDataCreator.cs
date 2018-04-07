@@ -9,7 +9,8 @@ public class SerializeDataCreator : MonoBehaviour {
     public static SerializeDataList serializeDataList_ { get; private set; }
 
     private void Awake() {
-        serializeDataList_ = new SerializeDataList(listLength_);
+        serializeDataList_ = new SerializeDataList();
+        serializeDataList_.Init(listLength_);
     }
 
 }
