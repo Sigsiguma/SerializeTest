@@ -14,6 +14,8 @@ namespace json {
                     jsonData_ = JsonUtility.ToJson(SerializeDataCreator.serializeDataList_);
                 }
             }, "JSONUtility Serialize");
+
+            utility.ByteSizeUtil.PrintByteSize(jsonData_, "JSONUtility");
         }
 
         public void Deserialize() {

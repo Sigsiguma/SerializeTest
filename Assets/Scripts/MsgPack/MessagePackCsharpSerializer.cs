@@ -14,6 +14,7 @@ namespace msgpack {
                     data_ = MessagePack.MessagePackSerializer.Serialize(SerializeDataCreator.serializeDataList_);
                 }
             }, "MessagePack Csharp Serialize");
+            utility.ByteSizeUtil.PrintByteSize(data_, "MessagePackCsharp");
         }
 
         public void Deserialize() {

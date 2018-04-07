@@ -16,18 +16,16 @@ namespace msgpack {
         }
 
         public void Serialize() {
+
             var stream = new MemoryStream();
 
             utility.StopWatchUtil.MeasureMethod(() => {
                 for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
-                    serializer_.Pack(stream, SerializeDataCreator.serializeDataList_);
+                    data_ = serializer_.PackSingleObject(SerializeDataCreator.serializeDataList_);
                 }
             }, "MessagePack CLI Serialize");
 
-            // ストリームからデータを取り出す
-            data_ = new byte[(int)stream.Length];
-            stream.Position = 0;
-            stream.Read(data_, 0, (int)stream.Length);
+            utility.ByteSizeUtil.PrintByteSize(data_, "MessagePackCLI");
         }
 
         public void Deserialize() {

@@ -8,24 +8,24 @@ namespace model {
     [MessagePack.MessagePackObject]
     public class SerializeData : ISerializationCallbackReceiver {
 
+        [MessagePackMember(0)]
+        [MessagePack.Key(0)]
+        public int testNum_;
         [MessagePackMember(1)]
         [MessagePack.Key(1)]
-        public int testNum_;
+        public float testFloat_;
         [MessagePackMember(2)]
         [MessagePack.Key(2)]
-        public float testFloat_;
+        public string testString_;
         [MessagePackMember(3)]
         [MessagePack.Key(3)]
-        public string testString_;
-        [MessagePackMember(4)]
-        [MessagePack.Key(4)]
         public bool testBool_;
 
+        [MessagePackMember(4)]
+        [MessagePack.Key(4)]
+        public List<string> testList_;
         [MessagePackMember(5)]
         [MessagePack.Key(5)]
-        public List<string> testList_;
-        [MessagePackMember(6)]
-        [MessagePack.Key(6)]
         public Dictionary<int, string> testDic_;
 
         [HideInInspector]

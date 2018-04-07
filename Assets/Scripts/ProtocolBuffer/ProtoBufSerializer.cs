@@ -34,6 +34,7 @@ namespace protobuf {
                     data_ = serializeDataList_.ToByteString();
                 }
             }, "ProtocolBuffer Serialize");
+            utility.MessageScroll.Log(string.Format("{0}: {1} bytes", "ProtocolBuffer", data_.Length));
         }
 
         public void Deserialize() {
