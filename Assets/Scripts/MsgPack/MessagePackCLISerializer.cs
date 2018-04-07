@@ -8,23 +8,35 @@ using MsgPack.Serialization;
 namespace msgpack {
     public class MessagePackCLISerializer : MonoBehaviour {
 
+        private byte[] data_;
+        private SerializeData serializeData_;
+        private MessagePackSerializer<SerializeData> serializer_;
+
         private void Start() {
-            SerializeData test = new SerializeData();
-            // MessagePack Serialize
+            serializer_ = MessagePackSerializer.Get<SerializeData>();
+            serializeData_ = new SerializeData();
+        }
+
+        public void Serialize() {
             var stream = new MemoryStream();
-            var serializer = MessagePackSerializer.Get<SerializeData>();
-            serializer.Pack(stream, test);
+
+            utility.StopWatchUtil.CountStart();
+            serializer_.Pack(stream, serializeData_);
+            utility.StopWatchUtil.CountEnd();
+            utility.StopWatchUtil.PrintTimeString("MessagePack CLI Serialize");
 
             // ストリームからデータを取り出す
-            byte[] data = new byte[(int)stream.Length];
+            data_ = new byte[(int)stream.Length];
             stream.Position = 0;
-            stream.Read(data, 0, (int)stream.Length);
+            stream.Read(data_, 0, (int)stream.Length);
+        }
 
-            Debug.Log(MessagePack.MessagePackSerializer.ToJson(data));
-
+        public void Deserialize() {
             // MessagePack Deserialize
-            SerializeData result = serializer.UnpackSingleObject(data);
-
+            utility.StopWatchUtil.CountStart();
+            SerializeData result = serializer_.UnpackSingleObject(data_);
+            utility.StopWatchUtil.CountEnd();
+            utility.StopWatchUtil.PrintTimeString("MessagePack CLI Deserialize");
         }
     }
 }

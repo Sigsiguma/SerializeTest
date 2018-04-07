@@ -6,11 +6,25 @@ using model;
 namespace json {
     public class JSONSerializer : MonoBehaviour {
 
-        private void Start() {
-            SerializeData test = new SerializeData();
-            string jsonData = JsonUtility.ToJson(test);
-            Debug.Log(jsonData);
+        private string jsonData_;
+        private SerializeData serializeData_;
 
+        private void Start() {
+            serializeData_ = new SerializeData();
+        }
+
+        public void Serialize() {
+            utility.StopWatchUtil.CountStart();
+            jsonData_ = JsonUtility.ToJson(serializeData_);
+            utility.StopWatchUtil.CountEnd();
+            utility.StopWatchUtil.PrintTimeString("JSONUtility Serialize");
+        }
+
+        public void Deserialize() {
+            utility.StopWatchUtil.CountStart();
+            JsonUtility.FromJson<SerializeData>(jsonData_);
+            utility.StopWatchUtil.CountEnd();
+            utility.StopWatchUtil.PrintTimeString("JSONUtility Deserialize");
         }
     }
 }
