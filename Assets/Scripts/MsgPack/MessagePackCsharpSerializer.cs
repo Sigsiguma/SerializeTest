@@ -8,6 +8,14 @@ namespace msgpack {
 
         private byte[] data_;
 
+        private void Awake() {
+            MessagePack.Resolvers.CompositeResolver.RegisterAndSetAsDefault(
+                MessagePack.Resolvers.GeneratedResolver.Instance,
+                MessagePack.Resolvers.BuiltinResolver.Instance,
+                MessagePack.Resolvers.PrimitiveObjectResolver.Instance
+            );
+        }
+
         public void Serialize() {
             utility.StopWatchUtil.MeasureMethod(() => {
                 for (int i = 0; i < SerializeDataCreator.iterationNum; ++i) {
